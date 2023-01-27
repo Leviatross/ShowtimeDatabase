@@ -27,10 +27,10 @@ app.get('/movie/:id', async (req, res) => {
   res.json(post)
 })
 
-app.get('/showing/:movieId', async (req, res) => {
-  const { movieId } = req.params
+app.get('/movie/:id/showing', async (req, res) => {
+  const { id } = req.params
   const showings = await prisma.showing.findMany({
-    where: { movieId: Number( movieId ) },
+    where: { movieId: Number( id ) },
   })
   res.json(showings)
 })
@@ -42,7 +42,7 @@ app.post('/movie', async (req, res) => {
   res.json(result)
 })
 
-app.post('/showing/:movieId', async (req, res) => {
+app.post('/movie/:id/showing', async (req, res) => {
   const result = await prisma.showing.create({
     data: { ...req.body },
   })
@@ -50,11 +50,11 @@ app.post('/showing/:movieId', async (req, res) => {
 })
 
 app.put('/movie/:id', async (req, res) => {
-  const { title, runtime } = req.body
+  const { title, runtimeMinutes } = req.body
   const { id } = req.params
   const movie = await prisma.movie.update({
     where: { id: Number(id) },
-    data: { title: title, runtime: runtime},
+    data: { title: title, runtimeMinutes: runtimeMinutes},
   })
   res.json(movie)
 })

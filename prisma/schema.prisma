@@ -8,13 +8,15 @@ generator client {
 model Movie {
   id    Int     @default(autoincrement()) @id
   title String
-  runtime Int
+  runtimeMinutes Int
   dateAdded DateTime  @default(now())
+  showings  Showing[]
 }
 
 model Showing {
   id    Int     @default(autoincrement()) @id
-  time  String
+  time  Int
+  movie Movie @relation(fields: [movieId], references: [id])
   movieId Int
 }
 
