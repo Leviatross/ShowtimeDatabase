@@ -54,7 +54,7 @@ app.put('/movie/:id', async (req, res) => {
   const { id } = req.params
   const movie = await prisma.movie.update({
     where: { id: Number(id) },
-    data: { title: title, runtimeMinutes: runtimeMinutes},
+    data: {title, runtimeMinutes},
   })
   res.json(movie)
 })
