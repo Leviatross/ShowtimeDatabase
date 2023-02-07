@@ -15,7 +15,7 @@ model Movie {
 
 model Showing {
   id    Int     @default(autoincrement()) @id
-  time  Int
+  time  String
   movie Movie @relation(fields: [movieId], references: [id])
   movieId Int
 }
