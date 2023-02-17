@@ -51,11 +51,11 @@ app.post('/movie/:movieId/showing', async (req, res) => {
 })
 
 app.put('/movie/:id', async (req, res) => {
-  const { title, runtimeMinutes } = req.body
+  const { title, runtimeMinutes, posterURL } = req.body
   const { id } = req.params
   const movie = await prisma.movie.update({
     where: { id: Number(id) },
-    data: {title, runtimeMinutes},
+    data: {title, runtimeMinutes, posterURL},
   })
   res.json(movie)
 })

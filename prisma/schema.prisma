@@ -11,6 +11,7 @@ model Movie {
   runtimeMinutes Int
   dateAdded DateTime  @default(now())
   showings  Showing[]
+  posterURL String @default("")
 }
 
 model Showing {
